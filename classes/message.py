@@ -4,7 +4,7 @@ class Message:
     def help(self):
         return discord.Embed(
             title = 'Quote Bot - Help',
-            description = '**Usage**\n`!quo <command> [arguments]`\n\n**Available Commands**\n- `!quo help` - Print help\n- `!quo add "[title]" "[quote]"` - Add a quote\n- `!asc random` - Print random quote\n',
+            description = '**Usage**\n`!quo <command> [arguments]`\n\n**Available Commands**\n- `!quo help` - Print help\n- `!quo add "[title]" "[quote]"` - Add a quote\n- `!quo random` - Print random quote\n',
             color = discord.Color.blue()
         )
 
