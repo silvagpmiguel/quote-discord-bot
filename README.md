@@ -6,7 +6,7 @@ Just [invite the bot](https://discord.com/oauth2/authorize?client_id=77943917641
 
 ## Available Commands
 - `!quo help` - Print help
-- `!quo add [title] [quote]` - Add new quote
+- `!quo add "[title]" "[quote]"` - Add new quote
 - `!quo random` - Print random quote
 
 ## Run the bot on your machine
