@@ -5,9 +5,9 @@ Discord bot used to add and print quotes.
 Just [invite the bot](https://discord.com/oauth2/authorize?client_id=779439176411381800&permissions=1074265152&scope=bot) to your **Discord** server and start using the commands.
 
 ## Available Commands
-- `!quo -help` - Print help
-- `!quo -add [title] [quote]` - Add new quote
-- `!quo -random` - Print random quote
+- `!quo help` - Print help
+- `!quo add [title] [quote]` - Add new quote
+- `!quo random` - Print random quote
 
 ## Run the bot on your machine
 
