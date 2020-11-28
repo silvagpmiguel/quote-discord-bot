@@ -6,8 +6,8 @@ Just [invite the bot](https://discord.com/oauth2/authorize?client_id=77943917641
 
 ## Available Commands
 - `!quo help` - Print help
-- `!quo add "[title]" "[quote]"` - Add new quote
-- `!quo random` - Print random quote
+- `!quo add "[title]" "[quote]" "[author (optional)]"` - Add a quote from yourself or someone else. 
+- `!quo random "[author (optional)]"` - Print a random quote from all/specific author.
 
 ## Run the bot on your machine
 
