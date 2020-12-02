@@ -11,7 +11,7 @@ class Quote():
         c = self.conn.cursor()
         # Create table
         c.execute('''CREATE TABLE IF NOT EXISTS quote
-                    (id INT PRIMARY KEY,creation_date datetime, title text, quote text, author text, UNIQUE(quote, author) ON CONFLICT IGNORE)''')
+                    (creation_date datetime, title text, quote text, author text, UNIQUE(quote, author) ON CONFLICT IGNORE)''')
         self.conn.commit()
 
     def addQuote(self, title, quote, author):
