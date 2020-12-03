@@ -7,19 +7,30 @@ from classes.message import Message
 
 
 class Client(discord.Client):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.db = kwargs['db']
+        self.u = kwargs['u']
+        self.passw = kwargs['passw']
+        self.host = kwargs['host']
+        self.port = kwargs['port']
+        self.quote = Quote(
+            self.db, self.u, self.passw, self.host, self.port
+        )
+        self.message = Message()
+
+    def __del__(self):
+        self.quote.closeConnection()
+
     async def on_ready(self):
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='!quo help'))
-        self.quote = Quote()
-        self.message = Message()
         logger = logging.getLogger('discord')
         logger.setLevel(logging.WARNING)
         logging.basicConfig(
             format='%(asctime)s, %(levelname)s -> %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p', filename='running.log',
             filemode='a', level=logging.INFO
         )
-
-    def __del__(self):
-        self.quote.closeConnection()
 
     async def on_message(self, message):
         content = message.content
@@ -51,14 +62,16 @@ class Client(discord.Client):
                     author = info[2]
                     author = author[1:len(author)-1]
                 logging.info('Add Quote')
-                self.quote.addQuote(
-                    title[1:len(title)-1], quote[1:len(quote)-1], author
-                )
+                duplicated = self.quote.addQuote(title[1:len(title)-1], quote[1:len(quote)-1], author)
+                if duplicated:
+                    logging.error('Error, duplicated key')
+                    await message.channel.send(embed=self.message.duplicateKeyError())
+                    return
                 await message.channel.send(embed=self.message.addSuccess())
             elif content[5:11] == 'random':
                 if len(content) == 11:
                     quote = self.quote.getRandomQuote()
-                    if(quote == None):
+                    if quote == None:
                         logging.error('Error, there are no quotes on db')
                         await message.channel.send(embed=self.message.quoteError())
                         return
@@ -72,13 +85,12 @@ class Client(discord.Client):
                     author = splitted[1]
                     author = author[1:len(author)-1]
                     quote = self.quote.getRandomQuoteFromUser(author)
-                    if(quote == None):
+                    if quote == None:
                         logging.error('Error, {author} has no quotes')
                         await message.channel.send(embed=self.message.authorQuoteError(author))
                         return
                     logging.info(f'Display Random Quote for User {author}')
-
-                await self.sendQuote(message, quote[1], quote[2], quote[3])
+                await self.sendQuote(message, quote[2], quote[3], quote[4])
             else:
                 await message.channel.send(embed=self.message.genericError())
 

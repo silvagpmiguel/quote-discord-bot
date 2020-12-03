@@ -31,7 +31,12 @@ class Message:
             description='Sorry, that\'s not how to use the **add** command :(\nUsage: `!quo add "[title]" "[quote]" "[author (optional)]"`',
             color=discord.Color.red()
         )
-
+    def duplicateKeyError(self):
+        return discord.Embed(
+            title='Error: Duplicated Poem',
+            description='Sorry, that poem already exists. :(',
+            color=discord.Color.red()
+         )
     def randomError(self):
         return discord.Embed(
             title='Error: Random Quote',
