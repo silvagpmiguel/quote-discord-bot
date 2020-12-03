@@ -4,10 +4,13 @@ Discord bot used to add and print quotes.
 ## Invite Quotes Bot to your Discord server
 Just [invite the bot](https://discord.com/oauth2/authorize?client_id=779439176411381800&permissions=1074265152&scope=bot) to your **Discord** server and start using the commands.
 
+## Usage
+`!quo <command> "arguments" [optional arguments]`
+
 ## Available Commands
 - `!quo help` - Print help
-- `!quo add "[title]" "[quote]" "[author (optional)]"` - Add a quote from yourself or someone else. 
-- `!quo random "[author (optional)]"` - Print a random quote from all/specific author.
+- `!quo add "title" "quote" "[author]"` - Add a quote from yourself or someone else. 
+- `!quo random "[author]"` - Print a random quote from all/specific author.
 
 ## Run the bot on your machine
 
